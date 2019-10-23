@@ -79,6 +79,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'rakr/vim-one'
+Plug 'ryanoasis/vim-webdevicons'
 " Plug 'KeitaNakamura/neodark.vim'
 Plug 'tyrannicaltoucan/vim-deep-space'
 " Plug 'airblade/vim-gitgutter'
@@ -103,6 +104,7 @@ Plug 'tpope/vim-repeat'
 Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -316,10 +318,18 @@ function! FloatCurrent()
     \ 'col': col,
     \ 'width': width,
     \ 'height': height,
-    \ 'style': 'minimal'
     \ }
+
   let win = nvim_open_win(buf, v:true, opts)
+  hi FloatTermNormal term=None guibg=#2d3d45
+  call setwinvar(win, '&winhl', 'Normal:FloatTermNormal')
 endfunction
 
 map ft :call OpenFloatTerm()<CR>
 map fb :call FloatCurrent()<CR>
+
+" Navigate buffer
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
