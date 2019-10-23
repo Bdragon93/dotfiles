@@ -1,0 +1,6 @@
+.vimrc
+.tmux.conf
+tmux-onedark-theme.tmux
+.config/nvim/colors
+.config/alacritty/alacritty.yml
+.config/fish/config.fish
