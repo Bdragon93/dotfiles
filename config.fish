@@ -1,12 +1,14 @@
-alias python="python3"
+alias python='python3'
 
 alias vi 'nvim'
-alias vimrc "vi ~/.vimrc"
-alias zshrc "vi ~/.zshrc"
-alias alarc "vi ~/.config/alacritty/alacritty.yml"
-alias trc "vi ~/.tmux.conf"
-alias frc "nvim ~/.config/fish/config.fish"
-alias tmux='tmux -u'
+alias vimrc 'vi ~/.vimrc'
+alias zshrc 'vi ~/.zshrc'
+alias alarc 'vi ~/.config/alacritty/alacritty.yml'
+alias trc 'vi ~/.tmux.conf'
+alias frc 'nvim ~/.config/fish/config.fish'
+alias tmux 'tmux -u'
+alias q 'exit'
+alias cl 'clear'
 
 # goto
 alias gofr "cd ~/Projects/frontend-core"
@@ -44,8 +46,8 @@ alias gacm "gaa && gcmm"
 # end
 
 # Export EH development
-set -x NPM_TOKEN '66eb53fe-7fee-4635-b3ca-057c05787be8'
-set -x EH_NPM_TOKEN '66eb53fe-7fee-4635-b3ca-057c05787be8'
+set -x NPM_TOKEN '2e7c08e2-5983-4966-9ce3-846b3c8cbc89'
+set -x EH_NPM_TOKEN '2e7c08e2-5983-4966-9ce3-846b3c8cbc89'
 set -x BUNDLE_GEM__FURY__IO '1ugzez-EqucLu2WRzTxWspxj1zpCbpkACU'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -61,7 +63,7 @@ function ci
 end
 
 function cc
-  ci `basename (pwd)`/tree/"((git rev-parse --abbrev-ref HEAD)//\//%2F)"
+  ci (basename $PWD)/tree/(string replace -- / %2F (git rev-parse --abbrev-ref HEAD))
 end
 
 if not set -q TMUX
@@ -74,7 +76,12 @@ set fish_greeting 'I am Bdragon' # turn off greeting
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
+set -gx EDITOR nvim
+set -x VISUAL nvim
 
 # Activate the default Ruby manually
 # echo "rvm default"
 set fish_color_command 'cyan'
+
+# set -gx NVM_DIR /usr/local/opt/nvm/
+# nvm use 9 --default

@@ -112,10 +112,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+Plug 'neoclide/coc-tsserver', {'do': 'npm i package.json && npm i'}
 
 " Plug 'ludovicchabant/vim-gutentags'
-
 " let g:gutentags_cache_dir = get(g:, 'gutentags_cache_dir', expand('~/.cache/tags'))
 
 " Initialize plugin system
@@ -141,6 +140,7 @@ let g:javascript_plugin_ngdoc = 1
 " let g:javascript_conceal_arrow_function = "⇒"
 set conceallevel=1
 
+imap jj <Esc>
 "" Map key
 " close buffer
 nmap qq :q<cr>
@@ -148,7 +148,9 @@ nmap qq :q<cr>
 " New buffer
 map <c-t> :new<cr>
 " New vertical buffer
-map <c-v> :vert sb<cr>
+map <c-v> :vsplit<cr>
+" New horizontal buffer
+map <c-b> :split<cr>
 
 " Quit all 
 nmap qa :qa<cr>
@@ -160,7 +162,7 @@ nmap ss :w<cr>
 nmap <leader>ag :Ag<cr>
 
 " jumpDefinition
-nmap gd call CocAction('jumpDefinition', 'drop')<cr>
+nmap gd :call CocAction('jumpDefinition', 'drop')<cr>
 
 " Map syntastic
 map <leader>ep :lprev<cr>
