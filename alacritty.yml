@@ -84,7 +84,6 @@ scrolling:
   # to allow mouse scrolling for applications like `man`.
   #
   # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
 
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
@@ -103,14 +102,19 @@ font:
   normal:
     # family: Operator Mono
     # style: Light
-    family: Haskplex Nerd
-    style: Regular
+    # family: Haskplex Nerd
+    # style: Regular
+    family: DejaVuSansMono Nerd Font Mono
+    style: Book
   bold:
-    family: Haskplex Nerd
+    # family: Haskplex Nerd
+    family: DejaVuSansMono Bold Nerd Font Mono
     style: Bold
   italic:
-    family: Haskplex Nerd
-    style: Italic
+    # family: Haskplex Nerd
+    # style: Italic
+    family: DejaVuSansMono Bold Nerd Font Mono
+    style: Oblique
   # Point size
   size: 12
 
