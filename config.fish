@@ -13,6 +13,7 @@ alias cl 'clear'
 # goto
 alias gofr "cd ~/Projects/lxp-web"
 alias gom "cd ~/Projects/lxp-web-mobile"
+alias gobe "cd ~/Projects/catlover"
 
 # yarn
 alias y "rm -rf node_modules && yarn"
@@ -69,3 +70,7 @@ set -x VISUAL nvim
 
 # Activate the default Ruby manually
 set fish_color_command 'cyan'
+
+set -gx PATH /Applications/Postgres.app/Contents/Versions/12/bin $PATH
+# set -gx GOPATH /Users/bdragon/Projects/catlover
+# set -gx GOBIN /Users/bdragon/Projects/catlover/bin
