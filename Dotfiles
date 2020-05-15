@@ -1,4 +1,4 @@
-.vimrc
+.config/nvim/init.vim
 .tmux.conf
 tmux-onedark-theme.tmux
 .config/nvim/colors
