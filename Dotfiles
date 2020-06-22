@@ -1,6 +1,6 @@
 .config/nvim/init.vim
 .tmux.conf
 tmux-onedark-theme.tmux
-.config/nvim/colors
+.config/nvim/colors/neodark_custom.vim
 .config/alacritty/alacritty.yml
 .config/fish/config.fish
