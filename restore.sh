@@ -1,6 +1,6 @@
 #!/bin/sh
 # Set up runtime config...
-git clone https://github.com/Bdragon93/dotfiles.git ~/Projects/dotfiles
+git clone git@github.com:Bdragon93/dotfiles.git ~/Projects/dotfiles
 mkdir -p ~/Projects
 cd ~/Projects/dotfiles
 
