@@ -6,6 +6,7 @@ cd ~/Projects/dotfiles
 
 mkdir -p ~/.config/alacritty 
 mkdir -p ~/.config/nvim
+mkdir -p ~/.config/nvim/colors
 
 while read f; do
 	echo "Copying file $f..."
