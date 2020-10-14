@@ -7,6 +7,7 @@ cd ~/Projects/dotfiles
 mkdir -p ~/.config/alacritty 
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/colors
+mkdir -p ~/.config/fish
 
 while read f; do
 	echo "Copying file $f..."
@@ -19,11 +20,11 @@ echo "Copy files done!"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-brew install node
+brew install tmux
 brew cask install alacritty
 brew install neovim
 
-install tmux plugin
+# install tmux plugin
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 brew install fish
