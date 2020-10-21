@@ -11,8 +11,7 @@ alias q 'exit'
 alias cl 'clear'
 
 # goto
-alias gofr "cd ~/Projects/lxp-web"
-alias gom "cd ~/Projects/lxp-web-mobile"
+alias gofr "cd ~/Projects/hd-web-admin"
 alias gobe "cd ~/Projects/catlover"
 
 # yarn
@@ -30,12 +29,9 @@ alias gpo "git push origin"
 alias gplo "git pull origin"
 alias gmo "git merge origin"
 alias gfo "git fetch origin"
-alias gmo "git merge origin"
 alias gm "git merge"
 alias glog "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gacm "gaa && gcmm"
-
-# echo fish_vi_key_bindings
 
 # echo fish_vi_key_bindings
 # alias unvm="rnvm"
