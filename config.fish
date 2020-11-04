@@ -68,5 +68,8 @@ set -x VISUAL nvim
 set fish_color_command 'cyan'
 
 set -gx PATH /Applications/Postgres.app/Contents/Versions/12/bin $PATH
+set -gx PATH $PATH:$HOME/go/bin
+set -gx PATH /Library/PostgreSQL/13/bin:$PATH
+
 # set -gx GOPATH /Users/bdragon/Projects/catlover
 # set -gx GOBIN /Users/bdragon/Projects/catlover/bin
