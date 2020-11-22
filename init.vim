@@ -66,7 +66,7 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 
 "" Persional Plugins
 " On-demand loading
@@ -78,10 +78,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'rakr/vim-one'
-Plug 'ryanoasis/vim-webdevicons'
+" Plug 'rakr/vim-one'
+Plug 'ryanoasis/vim-devicons'
+
 " Plug 'KeitaNakamura/neodark.vim'
-Plug 'tyrannicaltoucan/vim-deep-space'
+" Plug 'tyrannicaltoucan/vim-deep-space'
 " Plug 'airblade/vim-gitgutter'
 "Plug 'posva/vim-vue'
 
@@ -91,26 +92,22 @@ Plug 'junegunn/fzf.vim'
 
 " Syntax
 Plug 'pangloss/vim-javascript'
-" Plug 'w0rp/ale'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
-" Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Editor
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
-Plug 'reasonml-editor/vim-reason-plus'
+" Plug 'reasonml-editor/vim-reason-plus'
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+    " \ 'branch': 'next',
+    " \ 'do': 'bash install.sh',
+    " \ }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc-tsserver', {'do': 'npm i package.json && npm i'}
@@ -164,10 +161,11 @@ nmap qa :qa<cr>
 nmap ss :w<cr>
 
 " Save without format
-nmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 " Ag 
-nmap <leader>ag :Ag<cr>
+" nmap <leader>ag :rg<cr>
+nmap <leader>f :Rg<cr>
 
 " jumpDefinition
 nmap gd :call CocAction('jumpDefinition', 'drop')<cr>
@@ -205,41 +203,6 @@ map gb :Gblame<CR>
 " copy current path
 map fp :let @+ = expand("%")<CR>
 
-" Use deoplete.
-" Autocomplete using deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:tern_request_timeout = 1
-let g:tern#filetypes = ['js', 'jsx', 'vue']
-let g:tern#command = ['tern']
-
-" vim ale
-let g:ale_sign_column_always = 1
-let g:ale_linters = { 'javascript': ['eslint'] }
-let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['eslint']
-let g:ale_fix_on_save = 1
-" let g:ale_sign_error = '❌'
-" let g:ale_sign_error = "❗"
-let g:ale_sign_error = " ◉"
-let g:ale_sign_warning = " ◉"
-highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500
-" highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#ED6237
-
-call ale#Set('typescript_tsserver_executable', 'tsserver')
-call ale#Set('typescript_tsserver_config_path', '')
-call ale#Set('typescript_tsserver_use_global', get(g:, 'ale_use_global_executables', 0))
-
-call ale#linter#Define('typescript', {
-\   'name': 'tsserver',
-\   'lsp': 'tsserver',
-\   'executable': {b -> ale#node#FindExecutable(b, 'typescript_tsserver', [
-\       'node_modules/.bin/tsserver',
-\   ])},
-\   'command': '%e',
-\   'project_root': function('ale#handlers#tsserver#GetProjectRoot'),
-\   'language': '',
-\})
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
@@ -261,20 +224,20 @@ let g:closetag_regions = {
     \ }
 
 " coc-prettier
-command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+" command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+" command! -bang -nargs=* Ag
+  " \ call fzf#vim#ag(<q-args>,
+  " \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  " \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  " \                 <bang>0)
 
 
 " Prevent FZF open file in NERDTree
-autocmd VimEnter * nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+autocmd VimEnter * nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 
 " This is the default extra key bindings
 " let g:fzf_action = { 

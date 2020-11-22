@@ -11,7 +11,7 @@ alias q 'exit'
 alias cl 'clear'
 
 # goto
-alias gofr "cd ~/Projects/hd-web-admin"
+alias gofr "cd ~/Projects/foundations"
 alias gobe "cd ~/Projects/catlover"
 
 # yarn
@@ -33,19 +33,16 @@ alias gm "git merge"
 alias glog "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gacm "gaa && gcmm"
 
-# echo fish_vi_key_bindings
-# alias unvm="rnvm"
-
 # Use nvm
-function rnvm 
+function unvm 
   export NVM_DIR=~/.nvm
   source (brew --prefix nvm)/nvm.sh
 end
 
 # circleci
-function ci
-  open https://circleci.com/gh/LeapXpert/$argv[1]
-end
+# function ci
+  # open https://circleci.com/gh/LeapXpert/$argv[1]
+# end
 
 function cc
   ci (basename $PWD)/tree/(string replace -- / %2F (git rev-parse --abbrev-ref HEAD))
@@ -66,10 +63,3 @@ set -x VISUAL nvim
 
 # Activate the default Ruby manually
 set fish_color_command 'cyan'
-
-set -gx PATH /Applications/Postgres.app/Contents/Versions/12/bin $PATH
-set -gx PATH $PATH:$HOME/go/bin
-set -gx PATH /Library/PostgreSQL/13/bin:$PATH
-
-# set -gx GOPATH /Users/bdragon/Projects/catlover
-# set -gx GOBIN /Users/bdragon/Projects/catlover/bin
