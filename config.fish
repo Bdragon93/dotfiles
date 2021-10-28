@@ -19,6 +19,7 @@ alias y "rm -rf node_modules && yarn"
 
 # git
 alias gpm "git checkout master && git pull origin master"
+alias gpd "git checkout develop && git pull origin develop"
 alias gpld "git checkout dev && git pull origin dev"
 alias gpod "git push origin dev"
 alias gco "git checkout"
@@ -63,3 +64,9 @@ set -x VISUAL nvim
 
 # Activate the default Ruby manually
 set fish_color_command 'cyan'
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/__tabtab.fish ]; and . ~/.config/tabtab/__tabtab.fish; or true
+
+test -s /Users/bdragon/.nvm/nvm.fish; and source /Users/bdragon/.nvm/nvm.fish

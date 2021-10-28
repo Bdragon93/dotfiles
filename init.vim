@@ -192,7 +192,7 @@ nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>= <Plug>AirlineSelectNextTab
 
 " NERDTreeToggle
-map <F2> :NERDTreeToggle<CR>
+map <Tab> :NERDTreeToggle<CR>
 
 " NERDTreeFind
 map nf :NERDTreeFind<CR>
@@ -222,9 +222,6 @@ let g:closetag_regions = {
     \ 'typescript.tsx': 'jsxRegion,tsxRegion',
     \ 'javascript.jsx': 'jsxRegion',
     \ }
-
-" coc-prettier
-" command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
@@ -331,3 +328,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" coc-prettier
+map <leader>p :Prettier<CR>
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" stylelintplus
+let g:coc_global_extensions = ['coc-stylelintplus']
