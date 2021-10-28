@@ -28,13 +28,5 @@ echo "Copy files done!"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-curl -L https://get.oh-my.fish | fish
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
-
 # install tmux plugin
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-omf install agnoster
-
-omf install https://github.com/FabioAntunes/fish-nvm
-omf install https://github.com/edc/bass
