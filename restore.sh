@@ -5,6 +5,12 @@ git clone git@github.com:Bdragon93/dotfiles.git ~/Projects/dotfiles
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+brew install neovim
+brew install nvm
+brew install tmux
+brew install --cask alacritty
+brew install fish
+
 mkdir -p ~/Projects
 cd ~/Projects/dotfiles
 
@@ -19,11 +25,6 @@ while read f; do
 done < Dotfiles
 echo "Copy files done!"
 
-brew install nvm
-brew install tmux
-brew install --cask alacritty
-brew install neovim
-
 # Install vim plug for neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -33,8 +34,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 
 # install tmux plugin
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-brew install fish
 
 omf install agnoster
 
