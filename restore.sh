@@ -19,7 +19,7 @@ while read f; do
 done < Dotfiles
 echo "Copy files done!"
 
-brew install node
+brew install nvm
 brew install tmux
 brew install --cask alacritty
 brew install neovim
