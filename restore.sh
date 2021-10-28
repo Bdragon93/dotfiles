@@ -5,11 +5,10 @@ git clone git@github.com:Bdragon93/dotfiles.git ~/Projects/dotfiles
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew install neovim
-brew install nvm
-brew install tmux
 brew install --cask alacritty
-brew install fish
+brew install neovim nvm tmux fish the_silver_searcher python
+python -m pip install --upgrade pip
+pip3 install neovim
 
 mkdir -p ~/Projects
 cd ~/Projects/dotfiles
@@ -39,9 +38,3 @@ omf install agnoster
 
 omf install https://github.com/FabioAntunes/fish-nvm
 omf install https://github.com/edc/bass
-
-brew install the_silver_searcher
-
-brew install python
-python -m pip install --upgrade pip
-pip3 install neovim
