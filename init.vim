@@ -11,6 +11,8 @@ let g:pymode_python = 'python3'
 "" Vim settings
 set nu
 syntax on
+set re=0
+
 set clipboard=unnamedplus
 set cursorline
 set nohlsearch
@@ -72,28 +74,33 @@ call plug#begin('~/.vim/plugged')
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
+
+" Git
 Plug 'tpope/vim-fugitive'
 
 " UI
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
-" Plug 'rakr/vim-one'
 Plug 'ryanoasis/vim-devicons'
+Plug 'Yggdroot/indentLine'
 
-" Plug 'KeitaNakamura/neodark.vim'
-" Plug 'tyrannicaltoucan/vim-deep-space'
-" Plug 'airblade/vim-gitgutter'
-"Plug 'posva/vim-vue'
+" Elixir
+Plug 'elixir-editors/vim-elixir'
 
 " Search
+set rtp+=~/.fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Syntax
 Plug 'pangloss/vim-javascript'
-" Plug 'dense-analysis/ale'
-Plug 'sheerun/vim-polyglot'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
+let g:vim_jsx_pretty_disable_tsx = 1
+
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'hail2u/vim-css3-syntax'
 
 " Editor
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
@@ -101,7 +108,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'reasonml-editor/vim-reason-plus'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Plug 'autozimu/LanguageClient-neovim', {
@@ -113,9 +119,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc-tsserver', {'do': 'npm i package.json && npm i'}
 
 " Go
-Plug 'fatih/vim-go'
-Plug 'sebdah/vim-delve'
-Plug 'SirVer/ultisnips'
+" Plug 'fatih/vim-go'
+" Plug 'sebdah/vim-delve'
+" Plug 'SirVer/ultisnips'
 
 " Plug 'ludovicchabant/vim-gutentags'
 " let g:gutentags_cache_dir = get(g:, 'gutentags_cache_dir', expand('~/.cache/tags'))
@@ -131,10 +137,7 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 "" Set theme
-
-" set background=dark
 colorscheme neodark_custom
-" colorscheme one
 let g:airline_theme='badwolf'
 
 " vim-javascript
@@ -198,7 +201,7 @@ map <Tab> :NERDTreeToggle<CR>
 map nf :NERDTreeFind<CR>
 
 " Gblame
-map gb :Gblame<CR>
+map gb :Git blame<CR>
 
 " copy current path
 map fp :let @+ = expand("%")<CR>
@@ -243,7 +246,7 @@ autocmd VimEnter * nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? 
 " Default fzf layout
 
 " - down / up / left / right
-let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_layout = { 'down': '~30%' }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -336,3 +339,6 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " stylelintplus
 let g:coc_global_extensions = ['coc-stylelintplus']
+
+let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider = 0

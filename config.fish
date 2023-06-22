@@ -1,59 +1,76 @@
 alias python='python3'
 
+# alias vi '/opt/homebrew/bin/nvim'
 alias vi 'nvim'
 alias vimrc 'vi ~/.config/nvim/init.vim'
 alias zshrc 'vi ~/.zshrc'
 alias alarc 'vi ~/.config/alacritty/alacritty.yml'
 alias trc 'vi ~/.tmux.conf'
-alias frc 'nvim ~/.config/fish/config.fish'
-alias tmux 'tmux -u'
+alias frc 'vi ~/.config/fish/config.fish'
+# alias tmux '/opt/homebrew/bin/tmux'
 alias q 'exit'
 alias cl 'clear'
-
-# goto
-alias gofr "cd ~/Projects/foundations"
-alias gobe "cd ~/Projects/catlover"
 
 # yarn
 alias y "rm -rf node_modules && yarn"
 
 # git
-alias gpm "git checkout master && git pull origin master"
-alias gpd "git checkout develop && git pull origin develop"
-alias gpld "git checkout dev && git pull origin dev"
-alias gpod "git push origin dev"
 alias gco "git checkout"
-alias gaa "git add -A"
-alias ga "git add"
-alias gcmm "git commit -m"
 alias gpo "git push origin"
 alias gplo "git pull origin"
-alias gmo "git merge origin"
-alias gfo "git fetch origin"
+alias gpd "gco develop && gplo develop"
+alias gpm "gco master && gplo master"
+alias ga "git add"
+alias gaa "ga -A"
+alias gcmm "git commit -m"
 alias gm "git merge"
+alias gmo "git merge origin"
+alias gmom "git merge origin/master"
+alias gfo "git fetch origin"
 alias glog "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gacm "gaa && gcmm"
+alias grbd "git rebase -i develop"
+alias grbm "git rebase -i master"
+alias gp "gpo HEAD"
+
+alias gfs "git flow feature start"
+
+# goto
+alias gofe "cd ~/sweet/auctions-frontend"
+alias gonhl "cd ~/sweet/nhl-frontend"
+alias goop "cd ~/sweet/sfs-pack-opening"
+
+alias goom "cd ~/ikonia/mauer-web"
+alias gowl "cd ~/ikonia/wallet"
+alias goeb "cd ~/ikonia/pay"
+alias goiw "cd ~/ikonia/ikonia-web"
+alias goik "cd ~/ikonia/mauer"
+alias gosl "cd ~/ikonia/foyer-web"
+alias gofu "cd ~/ikonia/4ukraine"
+alias gopt "cd ~/ikonia/plantae"
+alias gomp "cd ~/ikonia/mushroom-player-prototype"
+
+# kill port 3000
+alias krp "lsof -ti tcp:3000 | xargs kill"
 
 # Use nvm
-function unvm 
-  export NVM_DIR=~/.nvm
-  source (brew --prefix nvm)/nvm.sh
-end
+# function unvm 
+  # export NVM_DIR=~/.nvm
+  # source (brew --prefix nvm)/nvm.sh
+# end
+
 
 # circleci
 # function ci
   # open https://circleci.com/gh/LeapXpert/$argv[1]
 # end
 
-function cc
-  ci (basename $PWD)/tree/(string replace -- / %2F (git rev-parse --abbrev-ref HEAD))
-end
+# function cc
+  # ci (basename $PWD)/tree/(string replace -- / %2F (git rev-parse --abbrev-ref HEAD))
+# end
 
-if not set -q TMUX
-  tmux attach -t base || tmux new -s base
-end
-
-set fish_greeting 'I am Bdragon' # turn off greeting
+set fish_greeting 'Welcome Bdragon!'
+echo 'node' (node -v)
 
 # Exports
 set -x LC_ALL en_US.UTF-8
@@ -65,8 +82,13 @@ set -x VISUAL nvim
 # Activate the default Ruby manually
 set fish_color_command 'cyan'
 
-# tabtab source for packages
-# uninstall by removing these lines
-[ -f ~/.config/tabtab/__tabtab.fish ]; and . ~/.config/tabtab/__tabtab.fish; or true
+# test -s /Users/bdragon/.nvm/nvm.fish; and source /Users/bdragon/.nvm/nvm.fish
+fish_add_path /usr/local/opt/crowdin@3/bin
+fish_add_path /usr/local/bin
 
-test -s /Users/bdragon/.nvm/nvm.fish; and source /Users/bdragon/.nvm/nvm.fish
+# AWS
+set -x AWS_DEFAULT_REGION "us-east-1"
+set -x AWS_PROFILE "sweet-playground"
+set -x AWS_DEFAULT_PROFILE "playground"
+
+alias aws-dev "python3 ~/aws-mfa/aws-mfa --duration 9900 --profile base_playground"

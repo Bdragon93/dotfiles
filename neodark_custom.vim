@@ -6,113 +6,6 @@ endif
 
 let g:colors_name = 'neodark_custom'
 
-" Functions {{{
-" function! s:generate_base_colors(base1)
-  " let b1 = s:RGB2HSL(s:hex2RGB(a:base1))
-  " let b2 = [b1[0], b1[1], b1[2]+5]
-  " let b3 = [b1[0], b1[1], b2[2]+10]
-  " let b4 = [b1[0], b1[1], b3[2]+15]
-  " let b5 = [b1[0], b1[1], b4[2]+25]
-  " return [a:base1,
-        " \ s:RGB2hex(s:HSL2RGB(b2)),
-        " \ s:RGB2hex(s:HSL2RGB(b3)),
-        " \ s:RGB2hex(s:HSL2RGB(b4)),
-        " \ s:RGB2hex(s:HSL2RGB(b5))]
-" endfunction
-
-function! s:hex2RGB(hex)
-  let R = printf("%d", "0x".a:hex[1:2])
-  let G = printf("%d", "0x".a:hex[3:4])
-  let B = printf("%d", "0x".a:hex[5:6])
-  return [R,G,B]
-endfunction
-
-function! s:RGB2hex(RGB)
-  return printf("#%x%x%x", a:RGB[0], a:RGB[1], a:RGB[2])
-endfunction
-
-function! s:RGB2HSL(RGB)
-  let R = a:RGB[0]
-  let G = a:RGB[1]
-  let B = a:RGB[2]
-
-  let MAX = max([R, G, B])
-  let MIN = min([R, G, B])
-
-  let H = MAX - MIN
-  if H > 0
-    if MAX == R
-      let H = 60 * (G - B) / H
-    elseif MAX == G
-      let H = 60 * (B - R) / H + 120
-    elseif MAX == B
-      let H = 60 * (R - G) / H + 240
-    endif
-    if H < 0
-      let H += 360
-    endif
-  endif
-
-  let CNT = (MAX + MIN) / 2
-  if CNT < 128
-    let S = 100 * (MAX - MIN) / (MAX + MIN)
-  else
-    let S = 100 * (MAX - MIN) / (510 - MAX - MIN)
-  endif
-
-  let L = CNT * 100 / 255
-
-  return [H,S,L]
-endfunction
-
-function! s:HSL2RGB(HSL)
-  let H = a:HSL[0]
-  let S = a:HSL[1]
-  let L = a:HSL[2]
-
-  if L < 50
-    let MAX = 255 * (L + L*S/100) / 100
-    let MIN = 255 * (L - L*S/100) / 100
-  else
-    let MAX = 255 * (L + (100-L)*S/100) / 100
-    let MIN = 255 * (L - (100-L)*S/100) / 100
-  endif
-
-  if H < 60
-    let R = MAX
-    let G = H * (MAX-MIN) / 60 + MIN
-    let B = MIN
-  elseif H < 120
-    let R = (120-H) * (MAX-MIN) / 60 + MIN
-    let G = MAX
-    let B = MIN
-  elseif H < 180
-    let R = MIN
-    let G = MAX
-    let B = (H-120) * (MAX-MIN) / 60 + MIN
-  elseif H < 240
-    let R = MIN
-    let G = (240-H) * (MAX-MIN) / 60 + MIN
-    let B = MAX
-  elseif H < 300
-    let R = (H-240) * (MAX-MIN) / 60 + MIN
-    let G = MIN
-    let B = MAX
-  else
-    let R = MAX
-    let G = MIN
-    let B = (360-H) * (MAX-MIN) / 60 + MIN
-  endif
-  return [R,G,B]
-endfunction
-
-" }}}
-
-" if !exists('g:neodark#terminal_transparent')
-  " let g:neodark#terminal_transparent = 0
-  " let s:base1[1] = 'none' " This doesn't work well for airline
-" endif
-
 " if g:neodark#background == ''
   let s:base1 = ['#1F2F38', 236]
   let s:base2 = ['#263A45', 237]
@@ -130,7 +23,7 @@ endfunction
 
 let s:red        = ['#DC657D', 168]
 let s:green      = ['#84B97C', 108]
-let s:yellow     = ['#D4B261', 179]
+let s:yellow     = ['#F2CE00', 179]
 let s:blue       = ['#61afef', 74]
 let s:purple     = ['#B888E2', 140]
 let s:orange     = ['#E18254', 173]
@@ -207,7 +100,7 @@ call s:hi('Cursor',                    s:base2,      s:base5,    '')
 call s:hi('CursorColumn',              '',           s:base2,    '')
 call s:hi('CursorLine',                '',           s:base2,    'none')
 call s:hi('CursorLineNr',              s:light_blue, s:base2,    'none')
-call s:hi('Directory',                 s:base4,       '',         '')
+call s:hi('Directory',                 s:green,       '',         '')
 call s:hi('DiffAdd',                   s:green,      s:base2,    'none')
 call s:hi('DiffChange',                s:yellow,     s:base2,    'none')
 call s:hi('DiffDelete',                s:red,        s:base2,    'none')
@@ -221,7 +114,7 @@ call s:hi('MatchParen',                s:light_blue, s:base1,    'underline,bold
 call s:hi('ModeMsg',                   s:green,      '',         '')
 call s:hi('MoreMsg',                   s:green,      '',         '')
 call s:hi('NonText',                   s:base4,      '',         'none')
-call s:hi('Normal',                    s:base5,      s:base1,    'none')
+call s:hi('Normal',                    s:base5,      '',    'none')
 call s:hi('Pmenu',                     s:base5,      s:base3,    '')
 call s:hi('PmenuSbar',                 '',           s:base2,    '')
 call s:hi('PmenuSel',                  s:base2,      s:green,    '')
@@ -255,10 +148,10 @@ call s:hi('WildMenu',                  s:base2,      s:green,	   '')
 call s:hi('Comment',                   s:base3,      '',         'italic')
 call s:hi('Constant',                  s:pink,        '',         '')
 call s:hi('String',                    s:green,     '',         '')
-call s:hi('Character',                 s:orange,     '',         '')
-call s:hi('Identifier',                s:light_blue,       '',         'none')
-call s:hi('Function',                  s:blue,       '',         '')
-call s:hi('Statement',                 s:green,      '',         'none')
+call s:hi('Character',                 s:brown,     '',         '')
+call s:hi('Identifier',                s:orange,       '',         'none')
+call s:hi('Function',                  s:beige,       '',         '')
+call s:hi('Statement',                 s:purple,      '',         'none')
 call s:hi('Keyword',                   s:red,        '',         '')
 call s:hi('Exception',                 s:red,        '',         '')
 call s:hi('PreProc',                   s:purple,     '',         'italic')
@@ -266,11 +159,11 @@ call s:hi('Define',                    s:purple,     '',         'none')
 call s:hi('Macro',                     s:purple,     '',         '')
 call s:hi('Type',                      s:yellow,     '',         'none')
 call s:hi('StorageClass',              s:orange,       '',         'italic')
-call s:hi('Special',                   s:pink,       '',         '')
-call s:hi('Tag',            					 '',           '',         '')
+call s:hi('Special',                   s:purple,       '',         '')
+call s:hi('Tag',            				   s:light_blue,           '',         '')
 call s:hi('Delimiter',                 s:base5,      '',         '')
 call s:hi('Underlined',                s:base5,      '',         'underline')
-call s:hi('Error',                     s:red,        s:base1,    'bold')
+call s:hi('Error',                     s:red,        '',    'bold')
 call s:hi('Todo',                      s:base5,      s:base1,    'bold')
 call s:hi('Conceal',                   s:beige,      s:base1,    '')
 
@@ -302,23 +195,19 @@ call s:hi('pandocDelimitedCodeBlockStart', s:base5,      '',         '')
 call s:hi('pandocDelimitedCodeBlockEnd',   s:base5,      '',         '')
 call s:hi('pandocAtxHeader',               s:orange,     '',         'bold')
 " }}}
-" Ruby {{{
-hi! link rubyStringDelimiter String
-hi! link rubyBlockParameterList rubyBlockParameter
-call s:hi('rubyInterpolationDelimiter', s:teal,       '',         '')
-" }}}
+
 " Go {{{
 hi! link goFunctionCall Function
 hi! link goMethodCall   Function
 " }}}
 
  " HTML highlighting -------------------------------------------------------{{{
-  call s:hi('htmlArg',            s:orange,  '', '')
-  call s:hi('htmlTagName',        s:red,  '', '')
-  call s:hi('htmlTagN',           s:red,  '', '')
-  call s:hi('htmlSpecialTagName', s:red,  '', '')
-  call s:hi('htmlTag',            s:blue, '', '')
-  call s:hi('htmlEndTag',         s:blue, '', '')
+  call s:hi('htmlArg',            s:teal,  '', '')
+  call s:hi('htmlTagName',        s:teal,  '', '')
+  call s:hi('htmlTagN',           s:teal,  '', '')
+  call s:hi('htmlSpecialTagName', s:teal,  '', '')
+  call s:hi('htmlTag',            s:teal, '', '')
+  call s:hi('htmlEndTag',         s:teal, '', '')
 
   call s:hi('MatchTag',   s:red,         '',  'underline,bold')
   " }}}
@@ -326,8 +215,8 @@ hi! link goMethodCall   Function
   " call s:hi('javaScriptBraces',       s:base5,  '', '')
   call s:hi('javaScriptFunction',     s:purple,   '', '')
   call s:hi('javaScriptIdentifier',   s:purple,   '', '')
-  call s:hi('javaScriptNull',         s:orange,   '', '')
   call s:hi('javaScriptNumber',       s:orange,   '', '')
+  call s:hi('jsBoolean',       s:orange,   '', '')
   call s:hi('javaScriptRequire',      s:teal,   '', '')
   call s:hi('javaScriptReserved',     s:purple,   '', '')
   " https://github.com/pangloss/vim-javascript
@@ -337,24 +226,41 @@ hi! link goMethodCall   Function
   " call s:hi('jsClassKeywords',        s:purple,   '', '')
   call s:hi('jsDocParam',             s:blue,   '', '')
   call s:hi('jsDocTags',              s:purple,   '', '')
-  " call s:hi('jsFuncBraces',           s:base5,  '', '')
-  call s:hi('jsFuncCall',             s:teal,   '', 'italic')
+  
+  call s:hi('jsBraces',           s:base5,  '', '')
+  call s:hi('jsFuncBraces',           s:base5,  '', '')
+  call s:hi('jsTemplateBraces',       s:base5, '', '')
+  
+
+
+  " call s:hi('jsBrackets',           s:base5,  '', '')
   " call s:hi('jsFuncParens',           s:base5,  '', '')
+  " call s:hi('jsClassNoise',           s:base5,  '', '')
+  " call s:hi('jsIfElseBraces',           s:base5,  '', '')
+  " call s:hi('jsTryCatchBraces',           s:base5,  '', '')
+  " call s:hi('jsModuleBraces',           s:base5,  '', '')
+  " call s:hi('jsObjectBraces',           s:base5,  '', '')
+  " call s:hi('jsObjectSeparator',           s:base5,  '', '')
+  " call s:hi('jsFinallyBraces',           s:base5,  '', '')
+  " call s:hi('jsRepeatBraces',           s:base5,  '', '')
+  " call s:hi('jsSwitchBraces',           s:base5,  '', '')
+
+  " call s:hi('jsFuncParens',           s:base5,  '', '')
+  call s:hi('jsFuncCall',             s:beige,   '', 'italic')
   call s:hi('jsFunction',             s:purple,   '', '')
   call s:hi('jsGlobalObjects',        s:orange, '', '')
   call s:hi('jsModuleWords',          s:purple,   '', '')
   call s:hi('jsModules',              s:purple,   '', '')
   " call s:hi('jsNoise',                s:base5,  '', '')
-  call s:hi('jsNull',                 s:orange,   '', '')
+  call s:hi('jsNull',                 s:pink,   '', '')
   call s:hi('jsOperator',             s:purple,   '', '')
   " call s:hi('jsParens',               s:base5,  '', '')
   " call s:hi('jsStorageClass',         s:purple,   '', '')
-  call s:hi('jsTemplateBraces',       s:red, '', '')
   call s:hi('jsTemplateVar',          s:green,   '', '')
   call s:hi('jsThis',                 s:red,   '', '')
-  call s:hi('jsUndefined',            s:orange,   '', '')
+  call s:hi('jsUndefined',            s:pink,   '', '')
   call s:hi('jsObjectValue',          s:base5,   '', '')
-  call s:hi('jsObjectKey',            s:beige,   '', '')
+  call s:hi('jsObjectKey',            s:brown,   '', '')
   call s:hi('jsReturn',               s:purple,   '', '')
   " https://github.com/othree/yajs.vim
   call s:hi('javascriptArrowFunc',    s:purple,   '', '')
@@ -364,11 +270,13 @@ hi! link goMethodCall   Function
   call s:hi('javascriptDocParamName', s:blue,   '', '')
   call s:hi('javascriptDocTags',      s:purple,   '', '')
   call s:hi('javascriptEndColons',    s:base3,  '', '')
-  call s:hi('javascriptExport',       s:purple,   '', '')
+  call s:hi('jsExport',       s:purple,   '', 'italic')
   call s:hi('javascriptFuncArg',      s:base1,  '', '')
   call s:hi('javascriptFuncKeyword',  s:purple,   '', '')
+  call s:hi('javascriptClassKeyword', s:red,   '', '')        
   call s:hi('javascriptIdentifier',   s:red,   '', '')
-  call s:hi('javascriptImport',       s:purple,   '', '')
+  call s:hi('jsImport',       s:purple,   '', 'italic')
+  call s:hi('jsFrom',       s:purple,   '', 'italic')
   call s:hi('javascriptObjectLabel',  s:base1,  '', '')
   " call s:hi('javascriptOpSymbol',     s:teal,   '', '')
   call s:hi('javascriptOpSymbols',    s:teal,   '', '')
@@ -377,21 +285,86 @@ hi! link goMethodCall   Function
   call s:hi('javascriptVariable',     s:purple,   '', '')
   " }}}
 
-  " JSON highlighting -------------------------------------------------------{{{
-  " call s:hi('jsonCommentError',         s:base1,  '', ''        )
-  " call s:hi('jsonKeyword',              s:red,   '', ''        )
-  " call s:hi('jsonQuote',                s:base3,  '', ''        )
-  " call s:hi('jsonTrailingCommaError',   s:red,   '', 'reverse' )
-  " call s:hi('jsonMissingCommaError',    s:red,   '', 'reverse' )
-  " call s:hi('jsonNoQuotesError',        s:red,   '', 'reverse' )
-  " call s:hi('jsonNumError',             s:red,   '', 'reverse' )
-  " call s:hi('jsonString',               s:green,   '', ''        )
-  " call s:hi('jsonBoolean',              s:purple,   '', ''        )
-  " call s:hi('jsonNumber',               s:orange,   '', ''        )
-  " call s:hi('jsonStringSQError',        s:red,   '', 'reverse' )
-  " call s:hi('jsonSemicolonError',       s:red,   '', 'reverse' )
+ " JSX highlighting -------------------------------------------------{{{
+  " call s:hi('jsxElement',     s:teal,   '', '')
+  call s:hi('jsxTag',     s:teal,   '', '')
+  call s:hi('jsxTagName',     s:teal,   '', '')
+  call s:hi('jsxComponentName',     s:yellow,   '', '')
+  call s:hi('jsxAttrib',     s:beige,   '', '')
+  call s:hi('jsxPunct',     s:base4,   '', '')
   " }}}
+
+
+ " TypeScript highlighting -------------------------------------------------{{{
+  " call s:hi('typescriptBOM',     s:orange,   '', '')
+  call s:hi('typescriptBraces',     s:base5,   '', '')
+  call s:hi('typescriptCall',     s:pink,   '', '')                
+  call s:hi('typescriptClassExtends',     s:orange,   '', '')        
+  call s:hi('typescriptClassHeritage',     s:orange,   '', '')       
+  " call s:hi('typescriptClassKeyword',     s:red,   '', '')        
+  call s:hi('typescriptClassName',     s:red,   '', '')
+  call s:hi('typescriptDefault',     s:orange,   '', 'italic')
+  call s:hi('typescriptImport',       s:purple,   '', 'italic')
+  call s:hi('typescriptExport',     s:purple,   '', 'italic')
+  " call s:hi('typescriptLabel',     s:purple,   '', '')
+  call s:hi('typescriptPredefinedType',     s:brown,   '', 'italic')
+  call s:hi('typescriptIdentifier',     s:orange,   '', '')
+  call s:hi('typescriptIdentifierName',     s:orange,   '', '')
+  call s:hi('typescriptSource',     s:purple,   '', 'italic')
+  call s:hi('typescriptMember',     s:orange,   '', '')
+  call s:hi('typescriptObjectKey',     s:orange,   '', '')
+  call s:hi('typescriptObjectLabel',     s:brown,   '', '')
+  call s:hi('typescriptBoolean',     s:pink,   '', '')
+  call s:hi('typescriptFunctionCall',             s:beige,   '', 'italic')
+  call s:hi('typescriptDestructureVariable',             s:base5,   '', '')
+  
+  " call s:hi('typescriptParens',     s:orange,   '', '')
+  " call s:hi('typescriptParenExp',     s:orange,   '', '')
+  " call s:hi('typescriptProp',     s:orange,   '', '')
+  " call s:hi('typescriptReserved',     s:orange,   '', '')
+  " call s:hi('typescriptTypeReference',     s:orange,   '', '')
+  call s:hi('tsxTag',     s:base4,   '', '')
+  call s:hi('tsxTagName',     s:yellow,   '', '')
+  call s:hi('tsxIntrinsicTagName',     s:teal,   '', '')
+  call s:hi('tsxAttrib',     s:beige,   '', '')
+  call s:hi('tsxCloseTag',     s:base4,   '', '')
+  call s:hi('tsxCloseString',     s:base4,   '', '')
+  " call s:hi('tsxString',     s:base4,   '', '')
+  " call s:hi('tsxNameSpace',     s:orange,   '', '')
+  " call s:hi('tsxCommentInvalid',     s:teal,   '', '')
+  " call s:hi('tsxBlockComment',     s:teal,   '', '')
+  " call s:hi('tsxLineComment',     s:teal,   '', '')
+  " call s:hi('tsxEscJs',     s:base4,   '', '')
 " }}}
+
+  " SCSS highlighting -------------------------------------------------------{{{
+  call s:hi('cssProp',     s:teal,   '', '')
+  call s:hi('cssTagName',     s:red,   '', '')
+  call s:hi('cssClassName',     s:orange,   '', '')
+  call s:hi('cssClassNameDot',     s:orange,   '', '')
+  call s:hi('cssAtKeyword',     s:yellow,   '', '')
+  call s:hi('cssBraces',     s:base5,   '', '')
+  
+  call s:hi('scssVariable',     s:brown,   '', 'italic')
+  call s:hi('scssSelectorName',     s:orange,   '', '')
+  call s:hi('scssSelectorChar',     s:orange,   '', '')
+  " call s:hi('scssFunctionName',     s:purple,   '', '')
+  
+  " JSON highlighting -------------------------------------------------------{{{
+  call s:hi('jsonCommentError',         s:base4,  '', ''        )
+  call s:hi('jsonKeyword',              s:teal,   '', ''        )
+  call s:hi('jsonQuote',                s:base3,  '', ''        )
+  call s:hi('jsonTrailingCommaError',   s:orange,   '', 'reverse' )
+  call s:hi('jsonMissingCommaError',    s:orange,   '', 'reverse' )
+  call s:hi('jsonNoQuotesError',        s:orange,   '', 'reverse' )
+  call s:hi('jsonNumError',             s:orange,   '', 'reverse' )
+  call s:hi('jsonString',               s:pink,   '', ''        )
+  call s:hi('jsonBoolean',              s:purple,   '', ''        )
+  call s:hi('jsonNumber',               s:red,   '', ''        )
+  call s:hi('jsonStringSQError',        s:orange,   '', 'reverse' )
+  call s:hi('jsonSemicolonError',       s:orange,   '', 'reverse' )
+" }}}
+"
 " Plugins {{{
 " Vim-Fugitive
 call s:hi('diffAdded',                 s:green,      '',         '')
