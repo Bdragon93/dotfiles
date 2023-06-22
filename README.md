@@ -10,4 +10,4 @@ curl -sSL https://raw.githubusercontent.com/Bdragon93/dotfiles/master/restore.sh
 
 Enjoy
 
-![preview](https://github.com/Bdragon93/dotfiles/blob/master/Screenshot.png)
+![preview](https://github.com/Bdragon93/dotfiles/blob/master/screenshot/Screenshot.png)
