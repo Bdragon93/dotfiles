@@ -1,7 +1,8 @@
 # Bdragon Dotfiles
 
 Required:
-* git
+
+- git
 
 To set up your development environment, run
 
@@ -9,5 +10,4 @@ curl -sSL https://raw.githubusercontent.com/Bdragon93/dotfiles/master/restore.sh
 
 Enjoy
 
-![preview](https://pouch.jumpshare.com/preview/41ldZpnDhTyYm-OOlmyfRxil9NbY3Y2TjPlM_HiQ_QG3sclZ9ca4L991WYkC4DCrarBZxi-jSlANNpPp1Nu-NUMlxjY_cotFvf5jFID9JU8)
-
+![preview](https://github.com/Bdragon93/dotfiles/blob/master/Screenshot.png)
